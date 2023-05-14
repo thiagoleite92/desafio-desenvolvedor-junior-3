@@ -168,7 +168,7 @@ export default function Register() {
       {!isLoading && (
         <Button
           onClick={handleRegister}
-          text="Login"
+          text="Cadastro"
           isDisabled={!handleButtonState()}
           customClass={styles.registerBtn}
         />

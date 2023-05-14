@@ -8,7 +8,7 @@ import AuthService from '../../service/AuthService';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
-  const { isLoading, setIsLoading, posts, setAllPosts, orderBy, refetch } =
+  const { setIsLoading, posts, setAllPosts, orderBy, refetch } =
     useContext(AppContext);
 
   const navigate = useNavigate();
@@ -54,8 +54,8 @@ function Home() {
     fetchPosts(orderBy);
   }, [fetchPosts, orderBy, refetch]);
 
-  return isLoading ? (
-    <span>'Carregando Posts'</span>
+  return !posts?.length ? (
+    <span>Ninguém postou ainda, seja o primeiro!</span>
   ) : (
     <>
       {posts?.map((post) => {

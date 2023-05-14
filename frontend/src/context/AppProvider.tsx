@@ -35,8 +35,9 @@ export default function AppProvider({ children }: AppProviderTypes) {
   }, [authService]);
 
   useEffect(() => {
-    if (!allPosts?.length) {
-      return;
+    if (!allPosts?.length && filterPosts) {
+      setFilterPosts(false);
+      return notification.error('Crie o primeiro post :)');
     }
 
     const filteredPosts = allPosts.filter((post) => {

@@ -1,0 +1,12 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=adminSenha
+      - POSTGRES_DB=dev_db
+    volumes:
+      - ./data:/var/lib/postgresql/data

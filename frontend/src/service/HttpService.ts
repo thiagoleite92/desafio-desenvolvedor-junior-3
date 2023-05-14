@@ -7,7 +7,7 @@ interface DataType {
 export default class HttpService {
   protected axios: AxiosInstance;
 
-  baseURL = 'http://localhost:5200';
+  baseURL = import.meta.env.VITE_API_URL;
 
   constructor() {
     this.axios = axios.create({
