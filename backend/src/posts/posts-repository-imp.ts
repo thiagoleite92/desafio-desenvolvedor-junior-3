@@ -15,7 +15,10 @@ export class PostsRepositoryImp implements PostsRepository {
   }
 
   async findById(postId: string): Promise<Post> {
-    return this.prisma.post.findFirst({ where: { id: postId } });
+    return this.prisma.post.findFirst({
+      where: { id: postId },
+      include: { User: { select: { name: true } } },
+    });
   }
 
   async update(

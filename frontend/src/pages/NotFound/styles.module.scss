@@ -1,0 +1,27 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: whitesmoke;
+  margin: 0 auto;
+  max-width: 1200px;
+  gap: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow-y: auto;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  height: 100vh;
+
+  div {
+    background-color: whitesmoke;
+    height: 50%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 auto;
+  }
+}

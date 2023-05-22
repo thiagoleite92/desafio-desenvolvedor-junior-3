@@ -4,6 +4,8 @@ import Register from '../pages/register';
 import Login from '../pages/login';
 import Home from '../pages/home';
 import PrivateLayout from '../components/layout/Private';
+import Post from '../pages/post';
+import NotFound from '../pages/NotFound';
 
 export function Router() {
   return (
@@ -36,6 +38,17 @@ export function Router() {
           </PrivateLayout>
         }
       />
+
+      <Route
+        path="/post/:postId"
+        element={
+          <PrivateLayout>
+            <Post />
+          </PrivateLayout>
+        }
+      />
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

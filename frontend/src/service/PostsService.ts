@@ -21,4 +21,10 @@ export default class PostsService extends HttpService {
     console.log('/posts/' + id);
     return await this.put('/posts/' + id, data);
   }
+
+  async fetchPostDetails<PostResponseType>(
+    id: string
+  ): Promise<PostResponseType> {
+    return await this.get('/posts/' + id);
+  }
 }

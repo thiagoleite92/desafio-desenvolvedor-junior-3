@@ -5,6 +5,13 @@
   flex-direction: column;
   width: 100%;
   max-height: fit-content;
+  position: relative;
+
+  .plusButton {
+    position: absolute;
+    cursor: pointer;
+    right: 0;
+  }
 
   .cardContainer {
     display: flex;

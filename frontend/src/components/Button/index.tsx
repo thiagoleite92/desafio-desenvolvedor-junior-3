@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 
 type ButtonProps = {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  text: string;
+  text?: string;
   customClass?: string;
   isDisabled?: boolean;
   children?: React.ReactNode;

@@ -22,6 +22,8 @@ import styles from './styles.module.scss';
 
 import moment from 'moment';
 import PostForm from '../PostForm';
+import Button from '../../../components/Button';
+import { PlusSquare } from 'lucide-react';
 
 export default function PostCard({
   id,
@@ -45,9 +47,9 @@ export default function PostCard({
   const authService = useMemo(() => new AuthService(), []);
   const notification = useMemo(() => new TostifyService(), []);
 
-  const [maxTextSize, setMaxTextSize] = useState<number>(550);
-
   const [showOptions, setShowOptions] = useState<boolean>(false);
+
+  const [showPlusBtn, setShowPlusBtn] = useState<boolean>(false);
 
   const [openPostForm, setOpenPostForm] = useState<boolean>(false);
 
@@ -105,6 +107,8 @@ export default function PostCard({
   const handleShowOptions = (event: React.MouseEvent) => {
     event.preventDefault();
 
+    setShowPlusBtn(true);
+
     if (typeof width === 'number' && width <= 375) return;
 
     if (userInfo?.id === userId) {
@@ -116,12 +120,20 @@ export default function PostCard({
   const handleHideOptions = (event: React.MouseEvent) => {
     event.preventDefault();
 
+    setShowPlusBtn(false);
+
     if (typeof width === 'number' && width <= 375) return;
 
     setShowOptions(false);
   };
 
   useEffect(() => {
+    if (typeof width === 'number' && width <= 375) {
+      setShowPlusBtn(true);
+    } else {
+      setShowPlusBtn(false);
+    }
+
     if (typeof width === 'number' && width <= 375 && userInfo?.id === userId) {
       setShowOptions(true);
     } else {
@@ -136,6 +148,15 @@ export default function PostCard({
         onMouseOver={handleShowOptions}
         onMouseOut={handleHideOptions}
       >
+        {showPlusBtn && (
+          <Button
+            onClick={() => navigate('/post/' + id)}
+            customClass={styles.plusButton}
+          >
+            <PlusSquare />
+          </Button>
+        )}
+
         <div className={styles.cardContainer}>
           <div className={styles.infoContainer}>
             <strong>{title}</strong>
@@ -144,29 +165,19 @@ export default function PostCard({
 
           <div className={styles.textContainer}>
             <div>
-              {text?.length > maxTextSize ? (
+              {text?.length > 550 ? (
                 <span>
-                  {text.substring(0, maxTextSize)}...{' '}
+                  {text.substring(0, 550)}
                   <span
-                    onClick={() => setMaxTextSize(3000)}
                     className={styles.readMore}
+                    onClick={() => navigate('/post/' + id)}
                   >
-                    ler mais
+                    {' '}
+                    ... clique para ler mais
                   </span>
                 </span>
               ) : (
-                <span>
-                  {text}{' '}
-                  {maxTextSize > 550 && (
-                    <span
-                      className={styles.readMore}
-                      onClick={() => setMaxTextSize(550)}
-                      style={{ color: 'red' }}
-                    >
-                      ler menos
-                    </span>
-                  )}
-                </span>
+                <span>{text}</span>
               )}
             </div>
           </div>
